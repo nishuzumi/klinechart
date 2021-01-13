@@ -52,9 +52,6 @@ function checkTouchEvents () {
   return Boolean(window.DocumentTouch && document instanceof window.DocumentTouch)
 }
 
-const touch = !!navigator.maxTouchPoints || !!navigator.msMaxTouchPoints || checkTouchEvents()
-const mobileTouch = 'onorientationchange' in window && touch
-
 function getDistance (p1, p2) {
   const xDiff = p1.clientX - p2.clientX
   const yDiff = p1.clientY - p2.clientY
@@ -89,7 +86,8 @@ export default class EventBase {
     this._preventDragProcess = false
 
     this._mousePressed = false
-
+    const touch = !!navigator.maxTouchPoints || !!navigator.msMaxTouchPoints || checkTouchEvents()
+    this.mobileTouch = 'onorientationchange' in window && touch
     this._init()
   }
 
@@ -375,7 +373,7 @@ export default class EventBase {
     this._target.addEventListener('mouseleave', this._mouseLeaveHandler.bind(this))
 
     this._target.addEventListener('touchstart', this._mouseDownHandler.bind(this), { passive: true })
-    if (!mobileTouch) {
+    if (!this.mobileTouch) {
       this._target.addEventListener('mousedown', this._mouseDownHandler.bind(this))
     }
 
