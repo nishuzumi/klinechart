@@ -42,3 +42,7 @@ export function binarySearchNearest (dataList, valueKey, targetNumber) {
   }
   return left
 }
+
+export function distanceSqrt (x, y, x2, y2) {
+  return (x - x2) ** 2 + (y - y2) ** 2
+}

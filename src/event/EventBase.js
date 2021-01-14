@@ -12,6 +12,8 @@
  * limitations under the License.
  */
 
+import { distanceSqrt } from '../utils/number'
+
 /**
  * The file comes from tradingview/lightweight-charts
  * https://www.tradingview.com/
@@ -27,7 +29,7 @@ const MouseEventButton = {
   RIGHT: 2
 }
 
-const DELAY_RESET_CLICK = 500
+const DELAY_RESET_CLICK = 300
 const DELAY_LONG_TAG = 600
 
 function getBoundingClientRect (element) {
@@ -70,6 +72,7 @@ export default class EventBase {
     this._options = options
 
     this._clickCount = 0
+    this._lastClick = null
     this._clickTimeoutId = null
     this._longTapTimeoutId = null
     this._longTapActive = false
@@ -335,10 +338,12 @@ export default class EventBase {
     }
 
     this._mousePressed = true
+    compatEvent.doubleClick = this._clickCount === 1 && this._lastClick && distanceSqrt(this._lastClick.x, this._lastClick.y, compatEvent.localX, compatEvent.localY) < 100
     this._processEvent(compatEvent, this._handler.mouseDownEvent)
 
     if (!this._clickTimeoutId) {
       this._clickCount = 0
+      this._lastClick = { x: compatEvent.localX, y: compatEvent.localY }
       this._clickTimeoutId = setTimeout(this._resetClickTimeout.bind(this), DELAY_RESET_CLICK)
     }
   }

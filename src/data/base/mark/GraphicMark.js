@@ -406,8 +406,8 @@ export default class GraphicMark {
   /**
    * 鼠标左边按钮点击事件
    */
-  mouseLeftButtonDownForDrawing () {
-    if (this._drawStep === this._totalStep - 1) {
+  mouseLeftButtonDownForDrawing (_, event) {
+    if (this._drawStep === this._totalStep - 1 || event.doubleClick) {
       this._drawStep = GRAPHIC_MARK_DRAW_STEP_FINISHED
     } else {
       this._drawStep++

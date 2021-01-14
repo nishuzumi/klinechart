@@ -72,7 +72,7 @@ export default class GraphicMarkEventHandler extends EventHandler {
     const graphicMarks = this._chartData.graphicMarks()
     const lastGraphicMark = graphicMarks[graphicMarks.length - 1]
     if (lastGraphicMark && lastGraphicMark.isDrawing()) {
-      lastGraphicMark.mouseLeftButtonDownForDrawing(point)
+      lastGraphicMark.mouseLeftButtonDownForDrawing(point, event)
       this._chartData.invalidate(InvalidateLevel.GRAPHIC_MARK)
     } else {
       for (let i = 0; i < graphicMarks.length; i++) {
