@@ -59,32 +59,32 @@ module.exports = [
     output: getOutputConfig('klinecharts.min', 'production'),
     plugins: getPlugins('production')
   },
-
-  // umd development blank
-  {
-    input: 'src/index.blank.js',
-    output: getOutputConfig('klinecharts.blank', 'development'),
-    plugins: getPlugins('development')
-  },
-
-  // umd production blank
-  {
-    input: 'src/index.blank.js',
-    output: getOutputConfig('klinecharts.blank.min', 'production'),
-    plugins: getPlugins('production')
-  },
-
-  // umd development simple
-  {
-    input: 'src/index.simple.js',
-    output: getOutputConfig('klinecharts.simple', 'development'),
-    plugins: getPlugins('development')
-  },
-
-  // umd production simple
-  {
-    input: 'src/index.simple.js',
-    output: getOutputConfig('klinecharts.simple.min', 'production'),
-    plugins: getPlugins('production')
-  }
+  //
+  // // umd development blank
+  // {
+  //   input: 'src/index.blank.js',
+  //   output: getOutputConfig('klinecharts.blank', 'development'),
+  //   plugins: getPlugins('development')
+  // },
+  //
+  // // umd production blank
+  // {
+  //   input: 'src/index.blank.js',
+  //   output: getOutputConfig('klinecharts.blank.min', 'production'),
+  //   plugins: getPlugins('production')
+  // },
+  //
+  // // umd development simple
+  // {
+  //   input: 'src/index.simple.js',
+  //   output: getOutputConfig('klinecharts.simple', 'development'),
+  //   plugins: getPlugins('development')
+  // },
+  //
+  // // umd production simple
+  // {
+  //   input: 'src/index.simple.js',
+  //   output: getOutputConfig('klinecharts.simple.min', 'production'),
+  //   plugins: getPlugins('production')
+  // }
 ]

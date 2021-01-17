@@ -46,4 +46,8 @@ export declare interface GraphicMark {
   performMousePressedMove?: (tpPoints: TimestampPricePoint[], pressedPointIndex: number, data: TimestampPricePoint) => void;
   performMouseMoveForDrawing?: (step: number, tpPoints: TimestampPricePoint[], data: TimestampPricePoint) => void;
   drawExtend?: (ctx: CanvasRenderingContext2D, graphicMarkDataSources: GraphicMarkDataSource[], markOptions: any, viewport: GraphicMarkViewport ,precision: PriceVolumePrecision, xAxis: any, yAxis: any) => void;
+  onInit?:(id, name, totalStep, chartData, xAxis, yAxis)=>void;
+  _tpPoints:TimestampPricePoint[];
+  _drawStep:number;
+  _chartData:any;
 }

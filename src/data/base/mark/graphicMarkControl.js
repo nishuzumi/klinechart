@@ -48,7 +48,7 @@ export function createGraphicMarkMapping () {
  */
 export function createGraphicMarkClass ({
   name, totalStep, checkMousePointOn, createGraphicDataSource,
-  performMousePressedMove, performMouseMoveForDrawing, drawExtend
+  performMousePressedMove, performMouseMoveForDrawing, drawExtend, onInit
 }) {
   if (
     !name ||
@@ -66,6 +66,7 @@ export function createGraphicMarkClass ({
   class Mark extends GraphicMark {
     constructor (id, chartData, xAxis, yAxis) {
       super(id, name, totalStep, chartData, xAxis, yAxis)
+      if (isFunction(onInit)) onInit.call(this, id, name, totalStep, chartData, xAxis, yAxis)
     }
   }
   Mark.prototype.checkMousePointOn = checkMousePointOn
