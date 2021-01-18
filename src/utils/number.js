@@ -21,13 +21,13 @@
  */
 export function binarySearchNearest (dataList, valueKey, targetNumber) {
   let left = 0
-  let right = 0
+  let right = dataList.length - 1
+  if (targetNumber === dataList[left][valueKey]) return left
+  if (targetNumber === dataList[right][valueKey]) return right
   for (right = dataList.length - 1; left !== right;) {
     const midIndex = Math.floor((right + left) / 2)
     const mid = right - left
     const midValue = dataList[midIndex][valueKey]
-    if (targetNumber === dataList[left][valueKey]) return left
-    if (targetNumber === dataList[right][valueKey]) return right
     if (targetNumber === midValue) {
       return midIndex
     }
