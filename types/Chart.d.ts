@@ -43,3 +43,15 @@ export declare interface Chart {
   unsubscribeDrawAction (type: DrawActionType, callback: (params: DrawActionCallbackParams) => void): void;
   getConvertPictureUrl(includeFloatLayer?: boolean, includeGraphicMark?: boolean, type?: PictureType, backgroundColor?: string): string;
 }
+
+export declare interface ChartData{
+  _dataList:Data[]
+}
+
+export declare interface Data{
+  open:string,
+  close:string,
+  high:string,
+  low:string,
+  timestamp:string
+}

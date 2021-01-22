@@ -1,3 +1,5 @@
+import {ChartData} from "./Chart";
+
 export declare interface GraphicMarkViewport {
   width: number;
   height: number;
@@ -49,5 +51,5 @@ export declare interface GraphicMark {
   onInit?:(id, name, totalStep, chartData, xAxis, yAxis)=>void;
   _tpPoints:TimestampPricePoint[];
   _drawStep:number;
-  _chartData:any;
+  _chartData:ChartData;
 }
