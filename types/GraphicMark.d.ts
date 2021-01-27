@@ -37,6 +37,7 @@ export declare interface GraphicMarkDataSource {
   isDraw?: boolean;
   isCheck?: boolean;
   style?: GraphicMarkDataSourceDrawStyle;
+  customMark?:GraphicMarkStyle
   dataSource: GraphicMarkDataSourceItem[] | GraphicMarkDataSourceItem[][];
 }
 
@@ -53,3 +54,53 @@ export declare interface GraphicMark {
   _drawStep:number;
   _chartData:ChartData;
 }
+
+export declare interface Point {
+  backgroundColor: string;
+  borderColor: string;
+  borderSize: number;
+  radius: number;
+  activeBackgroundColor: string;
+  activeBorderColor: string;
+  activeBorderSize: number;
+  activeRadius: number;
+}
+
+export declare interface ColorAnsSize {
+  color: string;
+  size: number;
+}
+
+export declare interface Fill {
+  color: string;
+}
+
+export declare interface Polygon {
+  stroke: ColorAnsSize;
+  fill: Fill;
+}
+
+export declare interface Arc {
+  stroke: ColorAnsSize;
+  fill: Fill;
+}
+
+export declare interface Text {
+  color: string;
+  size: number;
+  family: string;
+  weight: string;
+  marginLeft: number;
+  marginRight: number;
+  marginTop: number;
+  marginBottom: number;
+}
+
+export declare interface GraphicMarkStyle {
+  point: Point;
+  line: ColorAnsSize;
+  polygon: Polygon;
+  arc: Arc;
+  text: Text;
+}
+

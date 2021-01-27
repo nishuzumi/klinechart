@@ -16,6 +16,7 @@ import { renderStrokeFillCircle } from '../../../renderer/circle'
 import { checkPointOnCircle } from '../../../extension/mark/graphicHelper'
 import { renderHorizontalLine, renderLine, renderVerticalLine } from '../../../renderer/line'
 import { isValid } from '../../../utils/typeChecks'
+import { merge } from 'underscore'
 
 export const HoverType = {
   OTHER: 'other',
@@ -136,7 +137,9 @@ export default class GraphicMark {
           renderVerticalLine(ctx, points[0].x, points[0].y, points[1].y)
           break
         }
-        default: { break }
+        default: {
+          break
+        }
       }
     })
   }
@@ -265,30 +268,33 @@ export default class GraphicMark {
         this._drawStep, this._tpPoints, xyPoints, viewport,
         precision, this._xAxis, this._yAxis
       ) || []
-      graphicDataSources.forEach(({ type, isDraw, style, dataSource = [] }) => {
+      graphicDataSources.forEach(({ type, isDraw, style, dataSource = [], customMark = null }) => {
+        const modifyMarkOptions = customMark ? merge(markOptions, customMark) : markOptions
         if (!isValid(isDraw) || isDraw) {
           switch (type) {
             case GraphicMarkDrawType.LINE: {
-              this._drawLines(ctx, dataSource, markOptions)
+              this._drawLines(ctx, dataSource, modifyMarkOptions)
               break
             }
             case GraphicMarkDrawType.CONTINUOUS_LINE: {
-              this._drawContinuousLine(ctx, dataSource, markOptions)
+              this._drawContinuousLine(ctx, dataSource, modifyMarkOptions)
               break
             }
             case GraphicMarkDrawType.POLYGON: {
-              this._drawPolygon(ctx, dataSource, style, markOptions)
+              this._drawPolygon(ctx, dataSource, style, modifyMarkOptions)
               break
             }
             case GraphicMarkDrawType.ARC: {
-              this._drawArc(ctx, dataSource, style, markOptions)
+              this._drawArc(ctx, dataSource, style, modifyMarkOptions)
               break
             }
             case GraphicMarkDrawType.TEXT: {
-              this._drawText(ctx, dataSource, style, markOptions)
+              this._drawText(ctx, dataSource, style, modifyMarkOptions)
               break
             }
-            default: { break }
+            default: {
+              break
+            }
           }
         }
       })
@@ -436,7 +442,8 @@ export default class GraphicMark {
    * @param points
    * @param mousePoint
    */
-  checkMousePointOn (type, points, mousePoint) {}
+  checkMousePointOn (type, points, mousePoint) {
+  }
 
   /**
    * 创建图形配置
@@ -448,7 +455,8 @@ export default class GraphicMark {
    * @param xAxis
    * @param yAxis
    */
-  createGraphicDataSource (step, tpPoints, xyPoints, viewport, precision, xAxis, yAxis) {}
+  createGraphicDataSource (step, tpPoints, xyPoints, viewport, precision, xAxis, yAxis) {
+  }
 
   /**
    * 处理绘制过程中鼠标移动
@@ -456,7 +464,8 @@ export default class GraphicMark {
    * @param tpPoints
    * @param tpPoint
    */
-  performMouseMoveForDrawing (step, tpPoints, tpPoint) {}
+  performMouseMoveForDrawing (step, tpPoints, tpPoint) {
+  }
 
   /**
    * 处理鼠标按住移动
@@ -464,7 +473,8 @@ export default class GraphicMark {
    * @param pressedPointIndex
    * @param tpPoint
    */
-  performMousePressedMove (tpPoints, pressedPointIndex, tpPoint) {}
+  performMousePressedMove (tpPoints, pressedPointIndex, tpPoint) {
+  }
 
   /**
    * 扩展绘制
@@ -476,5 +486,6 @@ export default class GraphicMark {
    * @param xAxis
    * @param yAxis
    */
-  drawExtend (ctx, graphicDataSources, markOptions, viewport, precision, xAxis, yAxis) {}
+  drawExtend (ctx, graphicDataSources, markOptions, viewport, precision, xAxis, yAxis) {
+  }
 }

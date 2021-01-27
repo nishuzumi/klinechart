@@ -45,13 +45,19 @@ export declare interface Chart {
 }
 
 export declare interface ChartData{
-  _dataList:Data[]
+  _dataList:Data[],
+  _technicalIndicatorMapping:Object
+}
+
+export declare interface TechnicalIndicatorClass{
+  calcParams:any[],
+  name:string
 }
 
 export declare interface Data{
-  open:string,
-  close:string,
-  high:string,
-  low:string,
-  timestamp:string
+  open:number,
+  close:number,
+  high:number,
+  low:number,
+  timestamp:number
 }
